@@ -29,15 +29,19 @@ public class Control implements KeyListener {
     private int getUserSize() {
         Scanner sc;
         int n;
+        String[] line;
         while (true) {
-            System.out.println("\nPlease input the board size (2 to 9): ");
+            System.out.println("\nPlease input the board size (2 to 9), or q to quit: ");
             sc = new Scanner(System.in);
+            line = sc.nextLine().split(" ");
+            if (line.length != 1) continue;
             try {
-                n = Integer.parseInt(sc.nextLine());
+                n = Integer.parseInt(line[0]);
                 if (n<2 || n>9) continue;
                 break;
             }
-            catch (NumberFormatException ignored) {
+            catch (NumberFormatException e) {
+                if (line[0].equals("q")) System.exit(0);
             }
         }
         return n;
