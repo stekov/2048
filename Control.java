@@ -27,9 +27,20 @@ public class Control implements KeyListener {
     }
 
     private int getUserSize() {
-        System.out.print("Please input the board size (an integer larger than 0): ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        Scanner sc;
+        int n;
+        while (true) {
+            System.out.println("\nPlease input the board size (2 to 9): ");
+            sc = new Scanner(System.in);
+            try {
+                n = Integer.parseInt(sc.nextLine());
+                if (n<2 || n>9) continue;
+                break;
+            }
+            catch (NumberFormatException ignored) {
+            }
+        }
+        return n;
     }
 
     private void move(String direction) {
